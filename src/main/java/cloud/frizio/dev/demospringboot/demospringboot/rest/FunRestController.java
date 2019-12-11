@@ -3,10 +3,14 @@ package cloud.frizio.dev.demospringboot.demospringboot.rest;
 import java.time.LocalDateTime;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 public class FunRestController {
+
+  @Value("${info.app.version}")
+  private String version;
 
   // Expose "/" that return Hello World
   @GetMapping("/")
@@ -24,6 +28,12 @@ public class FunRestController {
   @GetMapping("/fortune")
   public String getDailyFortune() {
     return "Today is your lucky day";
+  }
+
+  // Expose "/version"
+  @GetMapping("/version")
+  public String getVersion() {
+    return "From the Maven POM, the version is: " + this.version;
   }
 
 }
