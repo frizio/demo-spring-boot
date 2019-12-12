@@ -12,6 +12,12 @@ public class FunRestController {
   @Value("${info.app.version}")
   private String version;
 
+  @Value("${coach.name}")
+  private String coachName;
+
+  @Value("${coach.team}")
+  private String coachTeam;
+
   // Expose "/" that return Hello World
   @GetMapping("/")
   public String sayHello() {
@@ -34,6 +40,12 @@ public class FunRestController {
   @GetMapping("/version")
   public String getVersion() {
     return "From the Maven POM, the version is: " + this.version;
+  }
+
+  // Expose "/teaminfo"
+  @GetMapping("/teaminfo")
+  public String getTeamInfo() {
+    return "Coach name: " + this.coachName + "Team: " + this.coachTeam;
   }
 
 }
